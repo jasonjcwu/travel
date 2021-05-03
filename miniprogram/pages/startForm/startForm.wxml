@@ -1,0 +1,177 @@
+<!-- miniprogram/pages/start_form/startForm.wxml -->
+<view class="start-form">
+	<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+		<view class="weui-form__text-area">
+			<h2 class="weui-form__title">发起活动</h2>
+			<view class="weui-form__desc" />
+		</view>
+		<view class="weui-form__control-area">
+
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells__title">活动要素</view>
+				<mp-cells>
+					<mp-cell prop="activityTheme">
+						<mp-icon
+						 slot="icon"
+						 extClass="start-form-icon"
+						 icon="sticker"
+						 color="#7b7e84"
+						/>
+						<input
+						 data-field="activityTheme"
+						 class="weui-input"
+						 placeholder="活动主题"
+						 maxlength="15"
+						 bindinput="formInputChange"
+						/>
+					</mp-cell>
+					<mp-cell prop="contactValue" ext-class="weui-cell_select weui-cell_select-before">
+						<view slot="title" class="weui-cell_active">
+							<picker bindchange="bindContactChange" range="{{contactWay}}">
+								<view class="weui-select" style="width: 3em">{{contactWay[contactIndex]}}</view>
+							</picker>
+						</view>
+						<view class="weui-cell__bd">
+							<input
+							 data-field="contactValue"
+							 class="weui-input"
+							 type="{{contactIndex == 0 ? 'number': 'text'}}"
+							 placeholder="请输入联系方式"
+							 bindinput="formInputChange"
+							 maxlength="13"
+							/>
+						</view>
+					</mp-cell>
+					<view bindtap="onCalendarDisplay" class="startform-cell weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+						<view class="weui-cell__hd">
+							<label class="weui-label" style="width: 3em">日期</label>
+						</view>
+						<view class="weui-cell__bd">{{date}}</view>
+					</view>
+					<view bindtap="showPopup" class="startform-cell weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+						<view class="weui-cell__hd">
+							<label class="weui-label" style="width: 3em">时间</label>
+						</view>
+						<view class="weui-cell__bd">{{haveTime? selectTime : ''}}</view>
+					</view>
+					<view bindtap="getLocation" class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd">
+							<label class="weui-label" style="width: 3em">地点</label>
+						</view>
+						<view class="weui-cell__bd ellipsis">{{tools.stringLimit(locationName)}}</view>
+						<view class="weui-cell__ft">
+							<mp-icon
+							 slot="icon"
+							 extClass="start-form-icon"
+							 icon="location"
+							 color="#7b7e84"
+							/>
+						</view>
+					</view>
+				</mp-cells>
+
+			</view>
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells__title">活动限制</view>
+				<view class="weui-cells">
+					<view class="weui-cell">
+						<view class="weui-cell__hd">
+							<label class="weui-label">限制人数</label>
+						</view>
+						<view class="weui-cell__bd">
+							<input
+							 class="weui-input"
+							 type="number"
+							 placeholder="不填不限制"
+							 model:value="{{limitPeople? limitPeople: ''}}"
+							 maxlength="5"
+							/>
+						</view>
+					</view>
+					<!-- <view class="weui-cell weui-cell_active  weui-cell_select weui-cell_select-after">
+              <view class="weui-cell__hd">
+                <label class="weui-label">截止时间</label>
+              </view>
+              <view class="weui-cell__bd">
+                <picker bindchange="bindContactChange" range="{{contactWay}}">
+                  <view class="weui-select">{{contactWay[contactIndex]}}</view>
+                </picker>
+              </view>
+            </view> -->
+					<view class="weui-cell weui-cell_active weui-cell_switch">
+						<view class="weui-cell__bd">发布到广场</view>
+						<view class="weui-cell__ft">
+							<label class="weui-switch-cp">
+								<checkbox class="weui-switch-cp__input" checked="{{publishPlaza}}" />
+								<view class="weui-switch-cp__box" />
+							</label>
+						</view>
+					</view>
+					<view class="weui-cell weui-cell_active weui-cell_switch">
+						<view class="weui-cell__bd">参与者联系方式</view>
+						<view class="weui-cell__ft">
+							<label class="weui-switch-cp">
+								<checkbox class="weui-switch-cp__input" checked="{{participatorContact}}" />
+								<view class="weui-switch-cp__box" />
+							</label>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells__title">活动内容</view>
+				<view class="weui-cells weui-cells_form">
+					<view class="weui-cell">
+						<view class="weui-cell__bd">
+							<navigator url="./editor/index">
+								<textarea
+								 class="weui-textarea"
+								 placeholder="可以输入活动的详细内容"
+								 placeholder-class="weui-input__placeholder"
+								 rows="2"
+								/>
+								</navigator>
+						</view>
+					</view>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="weui-form__opr-area">
+			<button class="weui-btn" type="primary" bindtap="submitActForm">发布活动</button>
+		</view>
+	</mp-form>
+	<van-popup show="{{ timePickershow }}" position="bottom" bind:close="onTimePickerClose">
+		<van-datetime-picker
+		 title="选择约定时间"
+		 type="time"
+		 value="{{selectTime}}"
+		 filter="{{ filter }}"
+		 bind:confirm="onTimePickerInput"
+		 bind:cancel="onTimePickerClose"
+		/>
+	</van-popup>
+	<van-calendar
+	 show="{{ calendarShow }}"
+	 type="range"
+	 bind:close="onCalendarClose"
+	 allow-same-day="true"
+	 color="#07c160"
+	 bind:unselect="onCalendarSlect"
+	 bind:confirm="onCalendarConfirm"
+	 confirm-disabled-text="请选择结束时间"
+	/>
+	<mp-toptips msg="{{error}}" type="error" show="{{error}}" />
+	<mp-dialog
+	 title="授权地理位置"
+	 show="{{dialogShow}}"
+	 bindbuttontap="openSetting"
+	 buttons="{{[{text: '取消'}, {text: '确定'}]}}"
+	>
+		<view>去设置允许小程序获取位置信息</view>
+	</mp-dialog>
+</view>
+
+<wxs src="./startForm.wxs" module="tools" />
+

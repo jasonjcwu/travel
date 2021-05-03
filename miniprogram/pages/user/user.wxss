@@ -1,0 +1,18 @@
+/* miniprogram/pages/user.wxss */
+/* .page {
+    padding: 10rpx 0;
+  }
+  
+  .page .avatar {
+    border-radius: 50%;
+  } */
+  .user-info-name {
+      display: flex;
+      align-items: center;
+      height: 48rpx;
+  }
+  .gender-image {
+      width: 1em;
+      height: 1em;
+      margin-left: 12rpx;
+  }

@@ -1,0 +1,69 @@
+<view class="page eidt-detail-images-container">
+	<view class='wrapper'>
+		<view class="eidtor-confirm">
+			<view catchtouchend="format">
+				<i class="iconfont icon-youxupailie {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered" />
+				<i class="iconfont icon-wuxupailie {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet" />
+				<span class="span-line">|</span>
+				<i class="iconfont icon-zuoduiqi {{formats.align === 'left' ? 'ql-active' : ''}}" data-name="align" data-value="left" />
+				<i class="iconfont icon-juzhongduiqi {{formats.align === 'center' ? 'ql-active' : ''}}" data-name="align" data-value="center" />
+				<i class="iconfont icon-youduiqi {{formats.align === 'right' ? 'ql-active' : ''}}" data-name="align" data-value="right" />
+				<span class="span-line">|</span>
+				<i class="iconfont icon-line-height {{formats.lineHeight ? 'ql-active' : ''}}" data-name="lineHeight" data-value="2" />
+			</view>
+			<a class="weui-btn weui-btn_mini weui-btn_primary content-confirm" bindtap="toDeatil">确定</a>
+		</view>
+		<view class="weui-cells__group weui-cells__group_form">
+			<view class="weui-cells__title">活动内容
+			</view>
+			<view class="weui-cells weui-cells_form">
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<editor
+						 id="editor"
+						 class="weui-textarea editor-area"
+						 placeholder="{{placeholder}}"
+						 placeholder-class="weui-input__placeholder"
+						 showImgSize
+						 showImgToolbar
+						 showImgResize
+						 bindstatuschange="onStatusChange"
+						 bindready="onEditorReady"
+						 adjust-position="false"
+						/>
+						<!-- <textarea class="weui-textarea" placeholder="请描述你所发生的问题" placeholder-class="weui-input__placeholder" rows="3"></textarea> -->
+						<view class="weui-textarea-counter">
+							<span>0</span>
+							/200
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class='toolbar' style="bottom: {{isIOS ? keyboardHeight : 0}}px; height: {{toolBarHeight}}px; padding-bottom: {{isIOS ? safeHeight : 0}}px">
+			<van-icon size="20px" bindtap="bindeditorBlur" name="arrow-down" />
+			<span class="span-line">|</span>
+			<i class="iconfont iconfont-padding icon-charutupian" bindtap="insertImage" />
+			<i catchtouchend="format" class="iconfont iconfont-padding icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold" />
+			<i catchtouchend="format" class="iconfont iconfont-padding icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic" />
+			<i
+			 catchtouchend="format"
+			 class="iconfont iconfont-padding icon-format-header-2 {{formats.header === 2 ? 'ql-active' : ''}}"
+			 data-name="header"
+			 data-value="{{2}}"
+			/>
+			<i
+			 catchtouchend="format"
+			 class="iconfont iconfont-padding icon-format-header-3 {{formats.header === 3 ? 'ql-active' : ''}}"
+			 data-name="header"
+			 data-value="{{3}}"
+			/>
+			<span class="span-line">|</span>
+			<i class="iconfont iconfont-padding icon-undo" catchtouchend="undo" />
+			<i class="iconfont iconfont-padding icon-redo" catchtouchend="redo" />
+			<i class="iconfont iconfont-padding icon-shanchu" catchtouchend="clear" />
+		</view>
+	</view>
+</view>
+

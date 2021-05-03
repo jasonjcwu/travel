@@ -1,0 +1,19 @@
+/*
+ * @Author: jasonjcwu
+ * @Date: 2021-04-15 22:08:34
+ * @LastEditors: jasonjcwu
+ * @LastEditTime: 2021-04-22 15:04:22
+ * @Description: 
+ */
+
+// 限制字体长度
+var stringLimit = function (string) {
+  if(string.length>12) {
+    return string.substring(0,12) + '...'
+  }
+  return string
+};
+
+module.exports = {
+  stringLimit: stringLimit
+};

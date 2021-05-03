@@ -1,0 +1,68 @@
+<!-- pages/user/user.wxml -->
+<view class="container">
+	<mp-cells style="width: 100%">
+		<mp-cell>
+			<view slot="title" style="position: relative;margin-right: 10px;">
+				<image src="{{userInfo.avatarUrl || '../../images/user-unlogin.png'}}" style="width: 50px; height: 50px; display: block" />
+			</view>
+			<block wx:if="{{!hasUserInfo}}">
+				<button bindtap="getUserProfile">点击获取头像昵称</button>
+			</block>
+			<block wx:else>
+				<view class="user-info-name">
+					<text>{{userInfo.nickName || '-'}}</text>
+						<image class="gender-image" src="{{tools.transform(userInfo.gender)}}" />
+				</view>
+				<view style="font-size: 13px;color: #888888;">
+					{{userInfo.city || userInfo.province || userInfo.country || '-'}}
+				</view>
+			</block>
+		</mp-cell>
+	</mp-cells>
+	<!-- <view wx:if="{{isAuthorized || userInfo.nickName}}" class="weui-panel weui-panel_access">
+		<view class="weui-panel__bd">
+			<navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+				<view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+					<image class="weui-media-box__thumb avatar" src="{{userInfo.avatarUrl || \"../../images/user-unlogin.png\"}}" />
+				</view>
+				<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+					<view class="weui-media-box__title">{{userInfo.nickName}}</view>
+					<view class="weui-media-box__desc">性别:{{userInfo.gender}}</view>
+					<view class="weui-media-box__desc">手机:{{userInfo.phoneNumber}}</view>
+				</view>
+			</navigator>
+
+		</view>
+	</view>
+
+	<view class="weui-btn-area">
+		<button
+		 wx:if="{{userInfo.isLoaded && isAuthorized && !userInfo.phoneNumber}}"
+		 class="weui-btn"
+		 type="primary"
+		 open-type="getPhoneNumber"
+		 bindgetphonenumber="bindGetPhoneNumber"
+		>
+			微信快速登录
+		</button>
+		<button
+		 wx:if="{{userInfo.isLoaded && !isAuthorized && !userInfo.nickName}}"
+		 class="weui-btn"
+		 type="primary"
+		 open-type="getUserInfo"
+		 bindgetuserinfo="bindGetUserInfoNew"
+		>
+			授权微信后登录
+		</button>
+		<button
+		 wx:if="{{userInfo.nickName}}"
+		 class="weui-btn"
+		 type="warn"
+		 bindtap="bindLogout"
+		>
+			退出登录
+		</button>
+	</view> -->
+</view>
+
+<wxs src="./user.wxs"  module="tools"/>

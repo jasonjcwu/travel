@@ -1,0 +1,34 @@
+/* miniprogram/pages/start_form/startForm.wxss */
+.start-form {
+    background: #fff;
+    padding: calc(112rpx + env(safe-area-inset-top)) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    margin-bottom: 60rpx;
+}
+.start-form-icon {
+    color: #7b7e84;
+    /* margin-right: 20rpx; */
+}
+
+/* cell高度 */
+.startform-cell {
+    height: 56px;
+    line-height: 56px;
+}
+
+
+/* vant日历组件 */
+.start-form .van-picker__confirm {
+    color: #07c160;
+}
+.start-form .calendar-confirm {
+    margin-bottom: 24rpx;
+}
+.start-form .van-calendar__day--start-end {
+    background: #07c160;
+}
+.start-form .van-calendar__footer {
+    margin: 0 auto;
+}
+.start-form .van-button--round {
+    border-radius: 8rpx;
+}
