@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-04-20 17:06:28
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-04-23 23:42:51
+ * @LastEditTime: 2021-05-10 17:50:30
  * @Description:
  */
 // miniprogram/pages/start_form/startForm.js
@@ -11,6 +11,8 @@ const key = '6KIBZ-6S5EU-UUCVJ-4MASL-DMLYO-QZBKA' //使用在腾讯位置服务�
 const referer = '撮合周边游' //调用插件的app的名称
 const category = '美食,娱乐休闲,旅游景点'
 const chooseLocation = requirePlugin('chooseLocation')
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
+import { editorHtml, userInfoStore } from '../../store/userinfo'
 
 Page({
   db: null,
@@ -72,6 +74,14 @@ Page({
 
   onLoad() {
     this.db = wx.cloud.database()
+    this.storeBindings = createStoreBindings(this, {
+      store: editorHtml,
+      fields: ['actContentHtml'],
+    })
+    this.storeBindings = createStoreBindings(this, {
+      store: userInfoStore,
+      fields: { userInfo: 'userData', hasUserInfo: 'logged' },
+    })
   },
   onReady() {},
   onShow() {
@@ -83,7 +93,6 @@ Page({
         locationName: location.name,
       })
     }
-
     // console.log(location)
   },
   // themeValueChange() {
@@ -204,14 +213,10 @@ Page({
   // 打开用户设置，位置权限
   openSetting(e) {
     let that = this
-    if (e.detail.index === 0) {
-      this.setData({
-        dialogShow: false,
-      })
-    } else {
-      this.setData({
-        dialogShow: false,
-      })
+    this.setData({
+      dialogShow: false,
+    })
+    if (e.detail.index !== 0) {
       wx.openSetting({
         success(res) {
           console.log(res.authSetting)
@@ -246,13 +251,13 @@ Page({
   //     }
   //   })
   // },
- // 返回选区已设置的样式
- onStatusChange(e) {
-  // console.log(e.detail)
-  this.setData({
-    actFormats:e.detail
-  })
-},
+  // 返回选区已设置的样式
+  onStatusChange(e) {
+    // console.log(e.detail)
+    this.setData({
+      actFormats: e.detail,
+    })
+  },
 
   // bindWordsInput(e) {
   //   let value = e.detail.value
@@ -266,15 +271,19 @@ Page({
     })
   },
   submitActForm() {
+    wx.showLoading({ title: '发布活动中', mask: true })
+
     let that = this
     this.selectComponent('#form').validate(async (valid, errors) => {
       console.log(valid, errors)
       if (valid) {
         await that.addActivity()
+        wx.hideLoading()
         wx.showToast({
           title: '发布成功',
         })
       } else {
+        wx.hideLoading()
         const firstError = Object.keys(errors)
         if (firstError.length) {
           this.setData({
@@ -286,23 +295,53 @@ Page({
   },
   async addActivity() {
     const Article = this.db.collection('article')
-    const {activityTheme, contactValue}  = this.data.formData
-    const {contactWay,contactIndex,date, selectTime, haveTime,location,limitPeople,publishPlaza,actContent}  = this.data
+    const User = this.db.collection('user')
 
+    const _ = this.db.command
+
+    const { activityTheme, contactValue } = this.data.formData
+    const {
+      contactWay,
+      contactIndex,
+      date,
+      selectTime,
+      haveTime,
+      location,
+      limitPeople,
+      publishPlaza,
+      actContentHtml,
+      participatorContact,
+      userInfo,
+    } = this.data
     const resArticle = await Article.add({
-      data:{
+      data: {
         title: activityTheme,
         contact: `${contactWay[contactIndex]}:${contactValue}`,
         date: date,
-        selectTime:haveTime? selectTime : '',
+        selectTime: haveTime ? selectTime : '',
         site: location,
         limit: limitPeople,
         publishPlaza: publishPlaza,
-        actContentz: actContent
-  
+        actContent: actContentHtml,
+        participatorContact: participatorContact,
+        joinUser: [userInfo.openId],
+      },
+    })
+
+    const resPublishUser = await User.where({
+      openId: userInfo.openId,
+    }).update({
+      data: {
+        attend: _.push(userInfo.openId),
+        publish: _.push(userInfo.openId),  
       }
     })
-    console.log(resArticle)
+    console.log(resArticle, resPublishUser)
+    if (resArticle?._id) {
+      wx.navigateTo({
+        url: `/pages/showAct/showAct?id=${resArticle?._id}`,
+      })
+    }
   },
   /**
    * 用户点击右上角分享

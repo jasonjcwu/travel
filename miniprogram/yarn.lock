@@ -16,3 +16,8 @@ mobx-miniprogram@^4.13.2:
   version "4.13.2"
   resolved "https://registry.yarnpkg.com/mobx-miniprogram/-/mobx-miniprogram-4.13.2.tgz#b72c03fd5ad1f1b9022c422f9c88a47d1e5f8868"
   integrity sha512-C3HtkqHCLKp35N2gXA80yFD6PNfSqwioPFmnjTQpBLrEqYm1F6yiWZ57CW+8FqgmR306mw6ZfsM5q7hSTHw8BQ==
+
+momoui-miniprogram@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/momoui-miniprogram/-/momoui-miniprogram-2.0.5.tgz#75b5e4e06575ebf49ecd5e27c93304046909400e"
+  integrity sha512-OesmMtX5ZgnYTtJcmHrdO0Q/RduGUVJcjdW6evNzYROwpERP3SvC/lnxvUfOCAdStr85qCdkXqUcC8gHQxdTPw==

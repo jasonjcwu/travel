@@ -6,7 +6,6 @@
 			<view class="weui-form__desc" />
 		</view>
 		<view class="weui-form__control-area">
-
 			<view class="weui-cells__group weui-cells__group_form">
 				<view class="weui-cells__title">活动要素</view>
 				<mp-cells>
@@ -69,7 +68,6 @@
 						</view>
 					</view>
 				</mp-cells>
-
 			</view>
 			<view class="weui-cells__group weui-cells__group_form">
 				<view class="weui-cells__title">活动限制</view>
@@ -129,6 +127,7 @@
 								 placeholder="可以输入活动的详细内容"
 								 placeholder-class="weui-input__placeholder"
 								 rows="2"
+								 value="{{this.data.actContentHtml? '再进入编辑' : ''}}"
 								/>
 								</navigator>
 						</view>

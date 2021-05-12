@@ -1,0 +1,48 @@
+<!--miniprogram/pages/showAct/showAct.wxml-->
+<view class="container show-act">
+	<view class="page-head">
+		<view class="page-head-title">{{activity.title}}</view>
+		<view class="page-head-line" />
+		<view wx:if="{{activity.date}}" class="page-head-desc">{{activity.date}} {{activity.selectTime}}</view>
+	</view>
+	<!-- 活动地图 -->
+	<view wx:if="{{activity.site.name || false}}" class="act-block box-shadow1">
+		<view class="act-location-name ellipsis">{{activity.site.name}}</view>
+		<view class="act-location-address ellipsis">{{activity.site.address}}</view>
+		<view class="act-location-imgs">
+			<map
+			 id="showMap"
+			 class="act-map"
+			 longitude="{{activity.site.longitude}}"
+			 latitude="{{activity.site.latitude}}"
+			 show-location="true"
+			 show-scale="true"
+			 markers="{{markers}}"
+			 width="100%"
+			 bindtap="openMap"
+			/>
+		</view>
+	</view>
+	<!-- 活动内容 -->
+	<view wx:if="{{activity.actContent}}" class="act-content act-block box-shadow1">
+		<rich-text nodes="{{activity.actContent}}" />
+	</view>
+	<view class="act-participator act-block box-shadow1">
+		<view class="act-participator-num">{{activity.joinUser.length}}{{activity.limit? '/' + activity.limit : ''}}人参加</view>
+		<mui-avatar-group class="act-participator-avatar" max="{{2}}">
+			<block wx:for="{{avatarArr}}" wx:key="_id">
+				<mui-avatar iconSize="20" src="{{item.avatarUrl}}" />
+			</block>
+		</mui-avatar-group>
+	</view>
+	<van-goods-action class="bottom-join">
+		<van-goods-action-icon class="mm" icon="share-o" text="分享" open-type="share" />
+		<van-goods-action-icon class="mm" icon="{{isStart ? 'star' : 'star-o'}}" text="收藏" bind:click="startAct" />
+		<van-goods-action-button class="mm" color="#07c160" text="{{joinText}}" bind:click="joinAct" />
+	</van-goods-action>
+
+	 <mp-dialog title="提醒" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{ [{text: '取消'}, {text: '确定'}]}}">
+        <view>下架活动后不能恢复哦，确定要下架吗</view>
+    </mp-dialog>
+</view>
+

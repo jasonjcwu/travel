@@ -25,6 +25,8 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: editorHtml,
       fields: ['actContentHtml'],
+      actions: ['updateActContent']
+
     })
 
     const { platform, safeArea, screenHeight} = wx.getSystemInfoSync()
@@ -78,8 +80,29 @@ Page({
   onEditorReady() {
     const that = this;
     wx.createSelectorQuery().select('#editor').context(function(res) {
+      console.log(res, that.data.actContentHtml)
+
       that.editorCtx = res.context;
+      if(Object.keys(that.data.actContentHtml).length > 0) {
+        that.editorCtx.setContents({
+          html: that.data.actContentHtml,
+          complete: (res)=>{
+            console.log(res,'set')
+          },
+          fail: (res)=>{
+            console.log(res,'fail')
+          }
+        })
+      }
     }).exec();
+
+    // if(Object.keys(this.data.actContentHtml).length === 0) {
+    //   wx.createSelectorQuery().select('#editor').context(res =>{
+    //     res.context.setContents({
+    //       html: this.data.actContentHtml
+    //     })
+    //   }).exec()
+    // }
   },
   undo() {
     this.editorCtx.undo();
@@ -134,9 +157,9 @@ Page({
   },
   // 插入图片
   insertImage() {
-    if(this.data.actContentImg.length >8) {
+    // if(this.data.actContentImg.length >8) {
 
-    }
+    // }
     wx.chooseImage({
       count: 1,
       success: (res) => {
@@ -156,16 +179,17 @@ Page({
     });
   },
 
-  //查看详细页面
   toDeatil() {
     const that = this
     this.editorCtx.getContents({
       success: (res) => {
         console.log(res.delta, res.html)
-        app.globalData.html = res.html
-        that.setData({
-          actContentHtml: res.html
-        })
+        // app.globalData.html = res.html
+        // that.setData({
+        //   actContentHtml: res.html
+        // })
+        this.updateActContent(res.html)
+        wx.navigateBack()
         console.log(res.html)
       },
       fail: (res) => {

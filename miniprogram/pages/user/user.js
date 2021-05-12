@@ -1,5 +1,7 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import { userInfoStore } from '../../store/userinfo'
+import { saveUserInfo } from '../../utils/getLogin'
+
 const app = getApp()
 Page({
   db: null, // db instance
@@ -28,29 +30,17 @@ Page({
   getUserProfile(e) {
     wx.getUserProfile({
       desc: '用于完善会员资料',
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true,
-        })
-        this.saveUserInfo(res.userInfo)
-        wx.showToast({
-          title: '授权成功',
-        })
+      success: async (res) => {
+        const resSave = await saveUserInfo(res.userInfo)
+        this.storeBindings.updateStoreBindings()
+        if(resSave) {
+          this.setData({
+            userInfo: this.data.userInfo,
+            hasUserInfo: this.data.hasUserInfo,
+          })
+        }
       },
     })
-  },
-  async saveUserInfo(userInfo) {
-    let resLogin = await wx.cloud.callFunction({
-      name: 'login',
-      data: { userInfo, action: 'register' },
-    })
-    console.log(resLogin)
-    app.globalData.userInfo = userInfo
-    app.globalData.logged = true
-    wx.setStorageSync('userInfo', userInfo)
-    wx.setStorageSync('logged', true)
   },
 
 

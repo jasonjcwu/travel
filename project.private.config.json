@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -20,6 +21,31 @@
         {
           "name": "pages/index/index",
           "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/startForm/startForm",
+          "pathName": "pages/startForm/startForm",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/showAct/showAct",
+          "pathName": "pages/showAct/showAct",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/showAct/showAct",
+          "pathName": "pages/showAct/showAct",
+          "query": "id=79550af26094fa7214f6a66a6319037a",
           "scene": null
         }
       ]

@@ -2,16 +2,16 @@
  * @Author: jasonjcwu
  * @Date: 2021-03-31 20:56:35
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-04-20 16:11:49
+ * @LastEditTime: 2021-05-12 15:23:29
  * @Description:
  */
 //app.js
-import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import { userInfoStore } from './store/userinfo'
 App({
   globalData: {
     ...userInfoStore
   },
+  // momouiRootPath: '/miniprogram_npm/momoui-miniprogram', 
   onLaunch() {
     // 云开发初始化
     wx.cloud.init({
@@ -21,11 +21,11 @@ App({
     this.getLogin()
   },
   async getLogin() {
-    let storageLogged = wx.getStorageSync('logged')
-    if(storageLogged) {
-      return userInfoStore.updateUser(wx.getStorageSync('userInfo'))
-
-    }
+    // let storageLogged = wx.getStorageSync('logged')
+    // console.log(storageLogged)
+    // if(storageLogged) {
+    //   return userInfoStore.updateUser(wx.getStorageSync('userInfo'))
+    // }
     // 登录
     let resUserData = await wx.cloud.callFunction({
       name: 'login',

@@ -6,7 +6,8 @@
   "dependencies": {
     "@vant/weapp": "^1.6.8",
     "mobx-miniprogram": "^4.13.2",
-    "mobx-miniprogram-bindings": "^2.0.0"
+    "mobx-miniprogram-bindings": "^2.0.0",
+    "momoui-miniprogram": "^2.0.5"
   },
   "devDependencies": {},
   "scripts": {

@@ -4,9 +4,9 @@
     "pages/start/start",
     "pages/startForm/startForm",
     "pages/startForm/editor/index",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/showAct/showAct"
   ],
-  "entryPagePath": "pages/startForm/editor/index",
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
@@ -45,7 +45,7 @@
   },
   "plugins": {
     "chooseLocation": {
-      "version": "1.0.5",
+      "version": "1.0.6",
       "provider": "wx76a9a06e5b4e693e"
     }
   },

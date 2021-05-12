@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "mui-avatar": "momoui-miniprogram/components/avatar/avatar",
+    "mui-avatar-group": "momoui-miniprogram/components/avatar-group/avatar-group",
+    "van-goods-action": "@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "@vant/weapp/goods-action-button/index",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
+  },
+  "navigationBarTitleText": "活动详情 "
+}
