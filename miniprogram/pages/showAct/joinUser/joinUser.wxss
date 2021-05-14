@@ -1,0 +1,10 @@
+/* miniprogram/pages/showAct/joinUser/JoinUser.wxss */
+@import "joinUser.skeleton.wxss";
+.gender-image {
+  width: 1em;
+  height: 1em;
+  margin-left: 12rpx;
+}
+.join-user-avatar {
+  border-radius: 6px;
+}

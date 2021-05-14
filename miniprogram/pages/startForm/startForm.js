@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-04-20 17:06:28
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-10 17:50:30
+ * @LastEditTime: 2021-05-13 14:14:49
  * @Description:
  */
 // miniprogram/pages/start_form/startForm.js
@@ -51,6 +51,7 @@ Page({
     // 参与者联系方式
     participatorContact: true,
     // 活动内容
+    // isEditor: false,
     maxWords: 1500,
     currentWords: 0,
     actContent: '',
@@ -351,6 +352,9 @@ Page({
     // 消除微信双向绑定告警
     return
   },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings()
+  }
   // onUnload () {
   //   // 页面卸载时设置插件选点数据为null，防止再次进入页面，geLocation返回的是上次选点结果
   //       chooseLocation.setLocation(null);

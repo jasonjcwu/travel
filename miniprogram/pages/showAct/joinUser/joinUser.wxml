@@ -1,0 +1,34 @@
+<!--miniprogram/pages/showAct/joinUser/JoinUser.wxml-->
+<import src="joinUser.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+
+<view hidden="{{loading}}" class="weui-panel weui-panel_access">
+	<view class="weui-panel__hd">参与活动成员 <span style="float: right;padding-right: 16px">共{{actUserList.length}}人</span></view>
+	<view class="weui-panel__bd">
+		<block wx:for="{{actUserList}}" wx:key="_id">
+			<view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+				<view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+					<image class="weui-media-box__thumb join-user-avatar" src="{{item.avatarUrl}}" />
+				</view>
+				<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+					<view class="weui-media-box__title">
+						<text>{{item.nickName}}</text>
+						<image class="gender-image" src="{{tools.transform(item.gender)}}" />
+					</view>
+          <block wx:if="{{isPublisher}}">
+            <view class="weui-media-box__desc">📞 {{item.phone}}</view>
+          </block>
+           <block wx:elif="{{!isAttender && index === 0}}">
+            <view class="weui-media-box__desc">参加活动 查看联系方式</view>
+          </block>
+           <block wx:elif="{{isAttender && index === 0}}">
+            <view class="weui-media-box__desc">📞 {{publisherPhone}}</view>
+          </block>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
+
+<wxs src="./user.wxs" module="tools" />
+

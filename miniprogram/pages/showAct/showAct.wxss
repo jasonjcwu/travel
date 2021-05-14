@@ -1,4 +1,6 @@
 /* miniprogram/pages/showAct/showAct.wxss */
+@import "showAct.skeleton.wxss";
+
 .show-act {
   margin: 0 16px 56px;
 }
@@ -102,4 +104,9 @@
   top: 50%;
   right: 0px;
   margin-top: -12px;
+}
+
+.phone-input .weui-dialog{
+  position: fixed;
+  top: 550rpx;
 }

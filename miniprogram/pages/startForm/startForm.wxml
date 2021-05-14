@@ -123,6 +123,7 @@
 						<view class="weui-cell__bd">
 							<navigator url="./editor/index">
 								<textarea
+								disabled="{{true}}"
 								 class="weui-textarea"
 								 placeholder="可以输入活动的详细内容"
 								 placeholder-class="weui-input__placeholder"

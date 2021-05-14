@@ -11,7 +11,7 @@
 			<block wx:else>
 				<view class="user-info-name">
 					<text>{{userInfo.nickName || '-'}}</text>
-						<image class="gender-image" src="{{tools.transform(userInfo.gender)}}" />
+					<image class="gender-image" src="{{tools.transform(userInfo.gender)}}" />
 				</view>
 				<view style="font-size: 13px;color: #888888;">
 					{{userInfo.city || userInfo.province || userInfo.country || '-'}}
@@ -65,4 +65,5 @@
 	</view> -->
 </view>
 
-<wxs src="./user.wxs"  module="tools"/>
+<wxs src="./user.wxs" module="tools" />
+

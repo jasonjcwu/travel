@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-03-31 20:56:35
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-12 01:18:35
+ * @LastEditTime: 2021-05-13 14:17:35
  * @Description:
  */
 // 云函数模板
@@ -56,7 +56,7 @@ const loginUser = async function (OPENID) {
     if (responseUser.data.length === 0) {
       return { code: 404, message: '请注册' }
     }
-    return { code: 200, userInfo: responseUser.data[0] }
+    return { code: 200, userInfo: responseUser.data[0], openId: OPENID }
   } catch (error) {
     return { message: error.message, stack: error.stack }
   }

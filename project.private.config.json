@@ -47,6 +47,12 @@
           "pathName": "pages/showAct/showAct",
           "query": "id=79550af26094fa7214f6a66a6319037a",
           "scene": null
+        },
+        {
+          "name": "pages/showAct/joinUser/joinUser",
+          "pathName": "pages/showAct/joinUser/joinUser",
+          "query": "id=79550af26094fa7214f6a66a6319037a",
+          "scene": null
         }
       ]
     }

@@ -5,7 +5,8 @@
     "pages/startForm/startForm",
     "pages/startForm/editor/index",
     "pages/user/user",
-    "pages/showAct/showAct"
+    "pages/showAct/showAct",
+    "pages/showAct/joinUser/joinUser"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -1,5 +1,7 @@
 <!--miniprogram/pages/showAct/showAct.wxml-->
-<view class="container show-act">
+<import src="showAct.skeleton.wxml" />
+<template is="skeleton" wx:if="{{loading}}" />
+<view hidden="{{loading}}" class="container show-act">
 	<view class="page-head">
 		<view class="page-head-title">{{activity.title}}</view>
 		<view class="page-head-line" />
@@ -27,22 +29,68 @@
 	<view wx:if="{{activity.actContent}}" class="act-content act-block box-shadow1">
 		<rich-text nodes="{{activity.actContent}}" />
 	</view>
-	<view class="act-participator act-block box-shadow1">
+	<navigator url="./joinUser/joinUser?id={{optionsId}}&phone={{activity.contact}}" class="act-participator act-block box-shadow1">
 		<view class="act-participator-num">{{activity.joinUser.length}}{{activity.limit? '/' + activity.limit : ''}}人参加</view>
 		<mui-avatar-group class="act-participator-avatar" max="{{2}}">
 			<block wx:for="{{avatarArr}}" wx:key="_id">
-				<mui-avatar iconSize="20" src="{{item.avatarUrl}}" />
+				<mui-avatar iconSize="10" src="{{item.avatarUrl}}" />
 			</block>
 		</mui-avatar-group>
-	</view>
+	</navigator>
+	<!-- 底部列表 -->
 	<van-goods-action class="bottom-join">
-		<van-goods-action-icon class="mm" icon="share-o" text="分享" open-type="share" />
-		<van-goods-action-icon class="mm" icon="{{isStart ? 'star' : 'star-o'}}" text="收藏" bind:click="startAct" />
-		<van-goods-action-button class="mm" color="#07c160" text="{{joinText}}" bind:click="joinAct" />
+		<van-goods-action-icon
+		 class="mm"
+		 icon="share-o"
+		 text="分享"
+		 open-type="share"
+		/>
+		<van-goods-action-icon
+		 class="mm"
+		 icon="{{isStart ? 'star' : 'star-o'}}"
+		 text="收藏"
+		 bind:click="startAct"
+		/>
+		<van-goods-action-button
+		 class="mm"
+		 color="#07c160"
+		 text="{{joinText}}"
+		 bind:click="joinAct"
+		/>
 	</van-goods-action>
-
-	 <mp-dialog title="提醒" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{ [{text: '取消'}, {text: '确定'}]}}">
-        <view>下架活动后不能恢复哦，确定要下架吗</view>
-    </mp-dialog>
+	<!-- <van-popup
+	show="{{ phonePop }}"
+	custom-style="height: 30%;"
+	bind:close="phonePopClose"
+	round="true"
+	>
+	<view class="page-section">
+        <view class="page-section-title">input</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="input" placeholder="这是一个输入框" />
+            </view>
+          </view>
+        </view>
+      </view>
+	</van-popup> -->
+	<mp-dialog
+	 title="联系方式"
+	 show="{{phonePop}}"
+	 bindbuttontap="userPhoneSubmit"
+   extClass="phone-input"
+	 buttons="{{ [{text: '取消'}, {text: '确定'}]}}"
+	>
+    <input class="weui-input" maxlength="18" model:value="{{phoneValue}}" placeholder="请输入电话号码或微信号" />
+	</mp-dialog>
+	<mp-dialog
+	 title="提醒"
+	 show="{{dialogShow}}"
+	 bindbuttontap="tapDialogButton"
+	 buttons="{{ [{text: '取消'}, {text: '确定'}]}}"
+	>
+		<view>下架活动后不能恢复哦，确定吗</view>
+	</mp-dialog>
 </view>
 

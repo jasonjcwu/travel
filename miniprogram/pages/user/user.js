@@ -27,6 +27,7 @@ Page({
       actions: ['updateUser'],
     })
   },
+
   getUserProfile(e) {
     wx.getUserProfile({
       desc: '用于完善会员资料',

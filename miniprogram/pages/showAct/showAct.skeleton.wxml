@@ -1,0 +1,35 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/5/13 上午8:37:23
+使用方法：
+在 D:\project\travel\miniprogram\pages\showAct\showAct.wxml 引入模板
+
+```
+<import src="showAct.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\project\travel\miniprogram\pages\showAct\showAct.wxss 中引入样式
+```
+@import "./showAct.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container show-act">
+      <view class="page-head">
+        <view class="page-head-title sk-transparent sk-text-18-7500-418 sk-text" style="background-position-x: 50%;">周日狼人杀</view>
+        <view class="page-head-line"></view>
+        <view class="page-head-desc sk-transparent sk-text-18-7500-727 sk-text" style="background-position-x: 50%;">5.7 - 5.8 14:00</view>
+      </view>
+      <view class="act-block box-shadow1">
+        <view class="act-location-name ellipsis sk-transparent sk-text-18-7500-510 sk-text">常德博物馆</view>
+        <view class="act-location-address ellipsis sk-transparent sk-text-18-7500-376 sk-text">湖南省常德市武陵区武陵大道282号</view>
+        <view class=" sk-transparent sk-img-empty"></view>
+
+      </view>
+
+    </view>
+  </view>
+</template>

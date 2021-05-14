@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-04-18 17:10:59
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-11 23:19:41
+ * @LastEditTime: 2021-05-13 10:48:57
  * @Description:
  */
 import { userInfoStore } from '../store/userinfo'
@@ -28,7 +28,7 @@ export const saveUserInfo = async (userInfo)=> {
   })
   console.log(resLogin)
   wx.hideLoading()
-  if(resLogin.result.code === 200) {
+  if(resLogin.result?.code === 200) {
     userInfoStore.updateUser({...userInfo, openId: resLogin.result.openId})
     wx.showToast({
       title: '授权成功',
@@ -36,7 +36,8 @@ export const saveUserInfo = async (userInfo)=> {
     return true
   } else {
     wx.showToast({
-      title: '授权失败请重试',
+      title: '授权失败请刷新重试',
+      icon:'error'
     })
     return false
   }

@@ -2,12 +2,13 @@
  * @Author: jasonjcwu
  * @Date: 2021-05-05 13:21:12
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-12 15:33:41
+ * @LastEditTime: 2021-05-14 02:20:48
  * @Description:
  */
 // miniprogram/pages/showAct/showAct.js
 import { userInfoStore } from '../../store/userinfo'
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
+import { saveUserInfo } from '../../utils/getLogin'
 
 Page({
   /**
@@ -27,6 +28,10 @@ Page({
       },
     ],
     dialogShow: false,
+    optionsId: '',
+    loading: true,
+    phonePop: false,
+    phoneValue: '',
   },
 
   /**
@@ -34,11 +39,14 @@ Page({
    */
   async onLoad(options) {
     this.db = wx.cloud.database()
-    this.optionsId = options.id
-    // this.storeBindings = createStoreBindings(this, {
-    //   store: userInfoStore,
-    //   fields: { userInfo: 'userData', hasUserInfo: 'logged' },
-    // })
+    this.setData({
+      optionsId: options.id,
+    })
+    this.storeBindings = createStoreBindings(this, {
+      store: userInfoStore,
+      fields: { userInfo: 'userData', hasUserInfo: 'logged' },
+      actions: ['updateUser'],
+    })
     await this.getActivity(options)
     this.getActStatus(options)
   },
@@ -58,7 +66,7 @@ Page({
     const resJoinAvatar = await this.db
       .collection('user')
       .where({
-        openId: _.all(resActivity.data[0].joinUser),
+        openId: _.in(resActivity.data[0].joinUser),
       })
       .field({
         avatarUrl: true,
@@ -67,6 +75,7 @@ Page({
       .get()
     wx.hideLoading()
     this.setData({
+      loading: false,
       activity: resActivity.data[0],
       avatarArr: resJoinAvatar.data,
       markers: [
@@ -80,11 +89,10 @@ Page({
   },
   // 判断是否为发布者，是否已参加，是否收藏
   getActStatus(options) {
-    let { openId, star, attend } = userInfoStore.userData
-    star = Array.isArray(star) ? JSON.parse(star) : star
-    attend = Array.isArray(attend) ? JSON.parse(attend) : attend
+    let { openId, star, attend } = this.data.userInfo
+    star = Array.isArray(JSON.parse(star)) ? JSON.parse(star) : star
+    attend = Array.isArray(JSON.parse(attend)) ? JSON.parse(attend) : attend
     const actOpenid = this.data.activity._openid
-    console.log(actOpenid, openId)
     if (actOpenid === openId) {
       this.setData({
         joinText: '下架活动',
@@ -109,19 +117,18 @@ Page({
     }
   },
 
-  openMap(e) {
-    wx.openLocation({
-      latitude: e.detail.latitude,
-      longitude: e.detail.longitude,
-      name: this.data.activity.site.name,
-      address: this.data.activity.site.address,
-    })
-  },
   // 点击收藏
   async startAct() {
+    if (!this.data.hasUserInfo) {
+      return this.getUserProfile()
+    }
+
     const _ = this.db.command
+    const { optionsId, isStart } = this.data
+    let { star } = this.data.userInfo
+    star = Array.isArray(JSON.parse(star)) ? JSON.parse(star) : []
     wx.showLoading({
-      title: this.data.isStart ? '取消收藏中...' : '收藏中...',
+      title: isStart ? '取消收藏中...' : '收藏中...',
     })
     const resStared = await this.db
       .collection('user')
@@ -130,20 +137,25 @@ Page({
       })
       .update({
         data: {
-          star: this.data.isStart ? _.pull(this.optionsId) : _.push(this.optionsId),
+          star: isStart ? _.pull(optionsId) : _.push(optionsId),
         },
       })
-    console.log(resStared)
+    wx.hideLoading()
     if (resStared?.stats?.updated > 0) {
+      wx.showToast({
+        title: isStart ? '取消成功' : '收藏成功',
+      })
+      console.log(isStart, star, optionsId)
+      isStart ? star.pop() : star.push(optionsId)
+      console.log(star)
+      this.updateUser({ star: star })
       this.setData({
-        isStart: !this.data.isStart,
+        isStart: !isStart,
       })
     }
-    wx.hideLoading()
-    wx.showToast({
-      title: this.data.isStart ? '收藏成功' :'取消成功' ,
-    })
   },
+
+  // 下架活动
   tapDialogButton(e) {
     this.setData({
       dialogShow: false,
@@ -156,10 +168,64 @@ Page({
       })
     }
   },
-  async joinAct() {
+
+  // 保存联系方式
+  async userPhoneSubmit(e) {
+    this.setData({
+      phonePop: false,
+    })
+    if (e.detail.index === 0) {
+      return this.setData({
+        phoneValue: '',
+      })
+    }
+    if (e.detail.index === 1) {
+      if (!this.data.phoneValue) {
+        return wx.showToast({
+          title: '不能为空',
+          icon: 'error',
+        })
+      }
+      wx.showLoading({
+        title: '保存中...',
+      })
+      const resAddPhone = await this.db
+        .collection('user')
+        .where({
+          openId: this.data.userInfo.openId,
+        })
+        .update({
+          data: {
+            phone: this.data.phoneValue,
+          },
+        })
+      wx.hideLoading()
+      if (resAddPhone.stats.updated > 0) {
+        wx.showToast({
+          title: '保存号码成功',
+        })
+        this.updateUser({ phone: this.data.phoneValue })
+        this.joinAct(true)
+      }
+    }
+  },
+
+  // 参加活动
+  async joinAct(savePhone = false) {
+    console.log(this.data.hasUserInfo, this.data.userInfo)
+    if (!this.data.hasUserInfo && !savePhone) {
+      return this.getUserProfile()
+    }
+    if (!this.data.userInfo.phone) {
+      return this.setData({
+        phonePop: true,
+      })
+    }
     const _ = this.db.command
     const joinText = this.data.joinText
+    const optionsId = this.data.optionsId
     const _openId = userInfoStore.userData.openId
+
     switch (joinText) {
       case '下架活动':
         this.setData({
@@ -174,11 +240,13 @@ Page({
         })
         break
       default:
-        console.log(this.optionsId)
+        wx.showLoading({
+          title: '参加活动中...',
+        })
         const resActJoin = await this.db
           .collection('article')
           .where({
-            _id: this.optionsId,
+            _id: optionsId,
           })
           .update({
             data: {
@@ -192,12 +260,45 @@ Page({
           })
           .update({
             data: {
-              attend: _.push(this.optionsId),
+              attend: _.push(optionsId),
             },
           })
+        wx.hideLoading()
         console.log(resActJoin, resAttendUser)
+        if (resActJoin.stats.updated > 0 && resAttendUser.stats.updated > 0) {
+          wx.showToast({
+            title: '已加入活动',
+          })
+        }
         break
     }
+  },
+
+  // 用户登录
+  getUserProfile(e) {
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: async (res) => {
+        const resSave = await saveUserInfo(res.userInfo)
+        this.storeBindings.updateStoreBindings()
+      },
+    })
+  },
+
+  phonePopClose() {
+    this.setData({
+      phonePop: false,
+    })
+  },
+
+  // 打开地图
+  openMap(e) {
+    wx.openLocation({
+      latitude: e.detail.latitude,
+      longitude: e.detail.longitude,
+      name: this.data.activity.site.name,
+      address: this.data.activity.site.address,
+    })
   },
   /**
    * 用户点击右上角分享
@@ -206,5 +307,8 @@ Page({
     return {
       title: `${this.data.activity.title}，活动就差你了`,
     }
+  },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings()
   },
 })

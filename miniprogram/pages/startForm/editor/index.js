@@ -199,5 +199,8 @@ Page({
   },
   bindeditorBlur() {
     EditorContext.blur()
+  },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings()
   }
 })

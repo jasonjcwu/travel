@@ -1,0 +1,51 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/5/13 上午8:32:01
+使用方法：
+在 D:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.wxml 引入模板
+
+```
+<import src="joinUser.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.wxss 中引入样式
+```
+@import "./joinUser.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="weui-panel weui-panel_access sk-pseudo sk-pseudo-circle">
+      <view class="weui-panel__hd sk-transparent sk-pseudo sk-pseudo-circle">参与活动成员
+        <span style="float: right;padding-right: 16px" class="sk-transparent sk-text-18-7500-361 sk-text">共2人</span>
+      </view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_appmsg sk-pseudo sk-pseudo-circle" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb join-user-avatar sk-image"></image>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">
+              <text class="sk-transparent sk-text-14-2857-63 sk-text">Jason🐇</text>
+              <image class="gender-image sk-image"></image>
+            </view>
+            <view class="weui-media-box__desc sk-transparent sk-text-14-2857-2 sk-text">📞 电话:186737389333</view>
+          </view>
+        </view>
+        <view class="weui-media-box weui-media-box_appmsg sk-pseudo sk-pseudo-circle" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb join-user-avatar sk-image"></image>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">
+              <text class="sk-transparent sk-text-14-2857-551 sk-text">测试用户1</text>
+              <image class="gender-image sk-image"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
