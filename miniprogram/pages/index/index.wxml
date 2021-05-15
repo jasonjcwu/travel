@@ -1,2 +1,40 @@
 <!--miniprogram/pages/index.wxml-->
-<text>miniprogram/pages/index.wxml</text>
+<view class="palace-wrap">
+	<!-- <mp-searchbar placeholder="搜索撮合活动" search="{{search}}" /> -->
+	<van-search
+	 bind:search="onSearch"
+	 bind:cancel="onCancel"
+	 value="{{ searchValue }}"
+	 placeholder="搜索撮合活动"
+	/>
+	<mp-tabs
+	 tabs="{{tabs}}"
+	 activeTab="{{activeTab}}"
+	 swiperClass="weui-tabs-swiper"
+	 bindtabclick="onTabClick"
+	 activeClass="tab-bar-title__selected"
+	/>
+	<block wx:for="{{actList}}" wx:key="_id">
+		<view bindtap="navToShowAct" data-id="{{item._id}}" class="weui-media-box weui-media-box_text">
+			<view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+			<view class="weui-media-box__desc">{{item.site.name}}</view>
+			<view class="weui-media-box__info">
+				<view class="weui-media-box__info__meta">{{item.site.city}}</view>
+				<view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.date}}</view>
+				<view class="weui-media-box__info__meta ">{{item.selectTime}}</view>
+			</view>
+		</view>
+	</block>
+	<mp-loading type="dot-gray" show="{{!bare}}" animated="true" />
+	<view style="color: #666; text-align: center;" wx:if="{{bare}}">- 已经到底啦 -</view>
+	<!-- <view class="weui-media-box weui-media-box_text">
+		<view class="weui-media-box__title weui-media-box__title_in-text">标题一</view>
+		<view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+		<view class="weui-media-box__info">
+			<view class="weui-media-box__info__meta">文字来源</view>
+			<view class="weui-media-box__info__meta">时间</view>
+			<view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+		</view>
+	</view> -->
+</view>
+

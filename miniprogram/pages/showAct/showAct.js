@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-05-05 13:21:12
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-14 02:20:48
+ * @LastEditTime: 2021-05-14 16:42:43
  * @Description:
  */
 // miniprogram/pages/showAct/showAct.js
@@ -197,6 +197,7 @@ Page({
         .update({
           data: {
             phone: this.data.phoneValue,
+            _updateTime: Date.now()
           },
         })
       wx.hideLoading()
@@ -251,6 +252,7 @@ Page({
           .update({
             data: {
               joinUser: _.push(_openId),
+              _updateTime: Date.now()
             },
           })
         const resAttendUser = await this.db
@@ -261,6 +263,8 @@ Page({
           .update({
             data: {
               attend: _.push(optionsId),
+              _updateTime: Date.now()
+
             },
           })
         wx.hideLoading()

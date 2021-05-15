@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@miniprogram-component-plus/tabs@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@miniprogram-component-plus/tabs/-/tabs-1.0.0.tgz#cbf6b4e3ce7c4ac8ad790a844b407155f07d9ed7"
+  integrity sha512-oV9dFpIoYAz0IbDECS9toS1GHivWoAd1cchxeZKCBV3PoPCEipHOeXQS3K2USr7EY8LDyfg3f0tDAacPfagYjg==
+
 "@vant/weapp@^1.6.8":
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/@vant/weapp/-/weapp-1.6.8.tgz#948ae16fba07c5a2054c52783f22aaf6a04453e1"

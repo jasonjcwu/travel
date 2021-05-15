@@ -3,7 +3,7 @@
 	<mp-cells style="width: 100%">
 		<mp-cell>
 			<view slot="title" style="position: relative;margin-right: 10px;">
-				<image src="{{userInfo.avatarUrl || '../../images/user-unlogin.png'}}" style="width: 50px; height: 50px; display: block" />
+				<image class="user-avatar" src="{{userInfo.avatarUrl || '../../images/user-unlogin.png'}}"   />
 			</view>
 			<block wx:if="{{!hasUserInfo}}">
 				<button bindtap="getUserProfile">点击获取头像昵称</button>

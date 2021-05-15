@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-04-20 17:06:28
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-13 14:14:49
+ * @LastEditTime: 2021-05-14 16:42:03
  * @Description:
  */
 // miniprogram/pages/start_form/startForm.js
@@ -326,6 +326,8 @@ Page({
         actContent: actContentHtml,
         participatorContact: participatorContact,
         joinUser: [userInfo.openId],
+        _createTime: Date.now(),
+        _updateTime: Date.now()
       },
     })
 
@@ -335,6 +337,7 @@ Page({
       data: {
         attend: _.push(userInfo.openId),
         publish: _.push(userInfo.openId),  
+        _updateTime: Date.now()
       }
     })
     console.log(resArticle, resPublishUser)
