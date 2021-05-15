@@ -1,0 +1,6 @@
+/* miniprogram/pages/user/record/record.wxss */
+.record-wrap {
+    background: #fff;
+    /* min-height: 100vh; */
+    padding: 20px 0;
+}

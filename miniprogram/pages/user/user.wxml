@@ -3,7 +3,7 @@
 	<mp-cells style="width: 100%">
 		<mp-cell>
 			<view slot="title" style="position: relative;margin-right: 10px;">
-				<image class="user-avatar" src="{{userInfo.avatarUrl || '../../images/user-unlogin.png'}}"   />
+				<image class="user-avatar" src="{{userInfo.avatarUrl || '../../images/user-unlogin.png'}}" />
 			</view>
 			<block wx:if="{{!hasUserInfo}}">
 				<button bindtap="getUserProfile">点击获取头像昵称</button>
@@ -19,50 +19,43 @@
 			</block>
 		</mp-cell>
 	</mp-cells>
-	<!-- <view wx:if="{{isAuthorized || userInfo.nickName}}" class="weui-panel weui-panel_access">
-		<view class="weui-panel__bd">
-			<navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-				<view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-					<image class="weui-media-box__thumb avatar" src="{{userInfo.avatarUrl || \"../../images/user-unlogin.png\"}}" />
-				</view>
-				<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-					<view class="weui-media-box__title">{{userInfo.nickName}}</view>
-					<view class="weui-media-box__desc">性别:{{userInfo.gender}}</view>
-					<view class="weui-media-box__desc">手机:{{userInfo.phoneNumber}}</view>
-				</view>
-			</navigator>
-
-		</view>
+	<view class="user-part">
+		<navigator url="/pages/user/record/record?type=attend" class="user-part__item">
+			<image class="user-part__item-icon" src="../../images/attend.png" />
+			<view class="user-part-placeholder">参加记录</view>
+		</navigator>
+		<navigator url="/pages/user/record/record?type=publish" class="user-part__item">
+			<image class="user-part__item-icon" src="../../images/publish.png" />
+			<view class="user-part-placeholder">发布记录</view>
+		</navigator>
+		<navigator url="/pages/user/record/record?type=star" class="user-part__item">
+			<image class="user-part__item-icon" src="../../images/star.png" />
+			<view class="user-part-placeholder">我的收藏</view>
+		</navigator>
 	</view>
+	<!-- <mp-cells title="带跳转的列表项">
+		<mp-cell link url="./cell" value="客服反馈" footer="说明文字">
+			<image slot="icon" src="../../images/service.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;" />
+		</mp-cell>
+	</mp-cells> -->
 
-	<view class="weui-btn-area">
-		<button
-		 wx:if="{{userInfo.isLoaded && isAuthorized && !userInfo.phoneNumber}}"
-		 class="weui-btn"
-		 type="primary"
-		 open-type="getPhoneNumber"
-		 bindgetphonenumber="bindGetPhoneNumber"
-		>
-			微信快速登录
-		</button>
-		<button
-		 wx:if="{{userInfo.isLoaded && !isAuthorized && !userInfo.nickName}}"
-		 class="weui-btn"
-		 type="primary"
-		 open-type="getUserInfo"
-		 bindgetuserinfo="bindGetUserInfoNew"
-		>
-			授权微信后登录
-		</button>
-		<button
-		 wx:if="{{userInfo.nickName}}"
-		 class="weui-btn"
-		 type="warn"
-		 bindtap="bindLogout"
-		>
-			退出登录
-		</button>
-	</view> -->
+	<mp-cells>
+		<mp-cell link value="客服反馈" ext-class="user-cell">
+			<button
+			 class="user-service-button"
+			 slot="title"
+			 open-type="contact"
+			 show-message-card="true"
+			/>
+			<image slot="icon" src="../../images/service.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;" />
+		</mp-cell>
+  	<mp-cell url="/pages/user/reward/reward" link value="打赏作者" ext-class="user-cell">
+			<image slot="icon" src="../../images/gift.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;" />
+		</mp-cell>
+  	<mp-cell url="/pages/user/about/about" link value="关于平台" ext-class="user-cell">
+			<image slot="icon" src="../../images/about.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;" />
+		</mp-cell>
+	</mp-cells>
 </view>
 
 <wxs src="./user.wxs" module="tools" />

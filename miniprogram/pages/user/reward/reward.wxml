@@ -1,0 +1,4 @@
+<!--miniprogram/pages/user/reward/reward.wxml-->
+<view class="user-reward">
+<image src="https://image-1257264979.cos.ap-guangzhou.myqcloud.com/travel/giftq2.png" mode="aspectFit"/>
+</view>
