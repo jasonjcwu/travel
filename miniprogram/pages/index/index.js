@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-04-15 16:55:31
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-15 17:19:51
+ * @LastEditTime: 2021-05-18 09:57:38
  * @Description:
  */
 // miniprogram/pages/index.js
@@ -54,13 +54,17 @@ Page({
     this.pageSkip = 0
     this.getActivity(e.detail)
   },
-  async getActivity(search = '') {
+
+  // 获取活动列表
+  async getActivity(search = '',refresh = false) {
     const _ = this.db.command
+    // 必须允许发布到广场的活动
     let whereArr = [
       {
         publishPlaza: true,
       },
     ]
+    // 正则模糊搜索标题
     if (search) {
       whereArr = whereArr.concat([
         {
@@ -70,6 +74,7 @@ Page({
         }
       ])
     }
+    // 请求article集合，每次限制请求10条，field设置一些需要获取的字段，避免请求包过大
     const resActivity = await this.db
       .collection('article')
       .where(_.and(whereArr))
@@ -83,12 +88,13 @@ Page({
         site: true,
       })
       .get()
+    // 如果response内容相同直接返回，避免重新渲染影响性能
     if(JSON.stringify(resActivity.data) === JSON.stringify(this.data.actList)) {
       return
     }
+    // 如果是搜索或者是刷新则把渲染数组重新赋值，否则的话就是添加到列表末尾
     this.setData({
-      actList: search ? resActivity.data : this.data.actList.concat(resActivity.data),
-      // mpLoadingShow: false,
+      actList: search || refresh ? resActivity.data : this.data.actList.concat(resActivity.data),
     })
     if (resActivity.data.length < 10) {
       this.setData({
@@ -126,7 +132,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   async onPullDownRefresh() {
-    await this.getActivity()
+    await this.getActivity('',true)
     wx.stopPullDownRefresh()
   },
 

@@ -147,14 +147,7 @@ Page({
   removeFormat() {
     this.editorCtx.removeFormat();
   },
-  // 插入当前日期
-  insertDate() {
-    const date = new Date()
-    const formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
-    this.editorCtx.insertText({
-      text: formatDate
-    });
-  },
+
   // 插入图片
   insertImage() {
     // if(this.data.actContentImg.length >8) {

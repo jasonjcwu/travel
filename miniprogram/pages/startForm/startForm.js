@@ -2,7 +2,7 @@
  * @Author: jasonjcwu
  * @Date: 2021-04-20 17:06:28
  * @LastEditors: jasonjcwu
- * @LastEditTime: 2021-05-14 16:42:03
+ * @LastEditTime: 2021-05-18 16:43:59
  * @Description:
  */
 // miniprogram/pages/start_form/startForm.js
@@ -163,9 +163,6 @@ Page({
           latitude: res.latitude || 22.5405026,
           longitude: res.longitude || 113.934528362,
         })
-        // that.setData({
-        //   location: locationGPS,
-        // })
         wx.navigateTo({
           url: `plugin://chooseLocation/index?key=${key}&referer=${referer}&location=${locationGPS}&category=${category}`,
         })

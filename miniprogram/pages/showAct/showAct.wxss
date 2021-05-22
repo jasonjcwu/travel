@@ -67,6 +67,7 @@
 .act-content {
   margin-top: 12px;
   padding: 12px;
+  overflow: hidden;
 }
 
 .act-participator {

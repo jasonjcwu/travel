@@ -1,0 +1,143 @@
+Date : 2021-05-22 00:54:35
+Directory : d:\project\travel
+Total : 87 files,  10411 codes, 753 comments, 488 blanks, all 11652 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| CSS        |         16 |      5,020 |         92 |        147 |      5,259 |
+| JSON       |         29 |      2,241 |          0 |         10 |      2,251 |
+| JavaScript |         25 |      1,950 |        568 |        279 |      2,797 |
+| wxml       |         13 |        571 |         93 |         36 |        700 |
+| Markdown   |          1 |        570 |          0 |          7 |        577 |
+| wxs        |          3 |         59 |          0 |          9 |         68 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                        | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                           |         87 |     10,411 |        753 |        488 |     11,652 |
+| cloudfunctions                                                              |         21 |      2,246 |         54 |         68 |      2,368 |
+| cloudfunctions\actionAct                                                    |          3 |         48 |         16 |          4 |         68 |
+| cloudfunctions\callback                                                     |          3 |         38 |          2 |          7 |         47 |
+| cloudfunctions\login                                                        |          4 |        987 |         19 |          8 |      1,014 |
+| cloudfunctions\openapi                                                      |          3 |         93 |          8 |         16 |        117 |
+| cloudfunctions\user-login-register                                          |          4 |        552 |          6 |         22 |        580 |
+| cloudfunctions\user-session                                                 |          4 |        528 |          3 |         11 |        542 |
+| cloudfunctions\user-session\config                                          |          1 |          3 |          0 |          0 |          3 |
+| miniprogram                                                                 |         63 |      7,436 |        699 |        413 |      8,548 |
+| miniprogram\behaviors                                                       |          1 |         12 |          0 |          1 |         13 |
+| miniprogram\components                                                      |          4 |        515 |          8 |         67 |        590 |
+| miniprogram\components\chatroom                                             |          4 |        515 |          8 |         67 |        590 |
+| miniprogram\iconfont                                                        |          1 |        168 |          0 |         55 |        223 |
+| miniprogram\pages                                                           |         47 |      2,121 |        631 |        205 |      2,957 |
+| miniprogram\pages\index                                                     |          4 |        165 |         47 |         15 |        227 |
+| miniprogram\pages\showAct                                                   |         13 |        786 |        152 |         41 |        979 |
+| miniprogram\pages\showAct\joinUser                                          |          7 |        220 |         66 |         18 |        304 |
+| miniprogram\pages\start                                                     |          4 |         31 |         37 |         13 |         81 |
+| miniprogram\pages\startForm                                                 |          9 |        819 |        126 |         41 |        986 |
+| miniprogram\pages\startForm\editor                                          |          4 |        320 |         40 |         17 |        377 |
+| miniprogram\pages\user                                                      |         17 |        320 |        269 |         95 |        684 |
+| miniprogram\pages\user\about                                                |          4 |         39 |         29 |         21 |         89 |
+| miniprogram\pages\user\record                                               |          4 |         76 |         35 |         20 |        131 |
+| miniprogram\pages\user\reward                                               |          4 |         33 |         30 |         20 |         83 |
+| miniprogram\store                                                           |          1 |         44 |         14 |          6 |         64 |
+| miniprogram\style                                                           |          1 |        124 |          0 |         21 |        145 |
+| miniprogram\utils                                                           |          3 |        181 |         19 |         33 |        233 |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                    | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\project\travel\README.md                                                 | Markdown   |        570 |          0 |          7 |        577 |
+| d:\project\travel\cloudfunctions\actionAct\config.json                      | JSON       |          6 |          0 |          0 |          6 |
+| d:\project\travel\cloudfunctions\actionAct\index.js                         | JavaScript |         28 |         16 |          4 |         48 |
+| d:\project\travel\cloudfunctions\actionAct\package.json                     | JSON       |         14 |          0 |          0 |         14 |
+| d:\project\travel\cloudfunctions\callback\config.json                       | JSON       |          7 |          0 |          0 |          7 |
+| d:\project\travel\cloudfunctions\callback\index.js                          | JavaScript |         17 |          2 |          7 |         26 |
+| d:\project\travel\cloudfunctions\callback\package.json                      | JSON       |         14 |          0 |          0 |         14 |
+| d:\project\travel\cloudfunctions\login\config.json                          | JSON       |          5 |          0 |          1 |          6 |
+| d:\project\travel\cloudfunctions\login\index.js                             | JavaScript |         81 |         19 |          5 |        105 |
+| d:\project\travel\cloudfunctions\login\package-lock.json                    | JSON       |        887 |          0 |          1 |        888 |
+| d:\project\travel\cloudfunctions\login\package.json                         | JSON       |         14 |          0 |          1 |         15 |
+| d:\project\travel\cloudfunctions\openapi\config.json                        | JSON       |         15 |          0 |          0 |         15 |
+| d:\project\travel\cloudfunctions\openapi\index.js                           | JavaScript |         64 |          8 |         15 |         87 |
+| d:\project\travel\cloudfunctions\openapi\package.json                       | JSON       |         14 |          0 |          1 |         15 |
+| d:\project\travel\cloudfunctions\user-login-register\WXBizDataCrypt.js      | JavaScript |         24 |          3 |          8 |         35 |
+| d:\project\travel\cloudfunctions\user-login-register\index.js               | JavaScript |         54 |          3 |         12 |         69 |
+| d:\project\travel\cloudfunctions\user-login-register\package-lock.json      | JSON       |        459 |          0 |          1 |        460 |
+| d:\project\travel\cloudfunctions\user-login-register\package.json           | JSON       |         15 |          0 |          1 |         16 |
+| d:\project\travel\cloudfunctions\user-session\config\example.js             | JavaScript |          3 |          0 |          0 |          3 |
+| d:\project\travel\cloudfunctions\user-session\index.js                      | JavaScript |         51 |          3 |          9 |         63 |
+| d:\project\travel\cloudfunctions\user-session\package-lock.json             | JSON       |        459 |          0 |          1 |        460 |
+| d:\project\travel\cloudfunctions\user-session\package.json                  | JSON       |         15 |          0 |          1 |         16 |
+| d:\project\travel\miniprogram\app.js                                        | JavaScript |         34 |         17 |          2 |         53 |
+| d:\project\travel\miniprogram\app.json                                      | JSON       |         61 |          0 |          0 |         61 |
+| d:\project\travel\miniprogram\app.wxss                                      | CSS        |      4,150 |         10 |         22 |      4,182 |
+| d:\project\travel\miniprogram\behaviors\muiBase.js                          | JavaScript |         12 |          0 |          1 |         13 |
+| d:\project\travel\miniprogram\components\chatroom\chatroom.js               | JavaScript |        303 |          0 |         35 |        338 |
+| d:\project\travel\miniprogram\components\chatroom\chatroom.json             | JSON       |          4 |          0 |          0 |          4 |
+| d:\project\travel\miniprogram\components\chatroom\chatroom.wxml             | wxml       |         74 |          5 |          7 |         86 |
+| d:\project\travel\miniprogram\components\chatroom\chatroom.wxss             | CSS        |        134 |          3 |         25 |        162 |
+| d:\project\travel\miniprogram\iconfont\iconfont.wxss                        | CSS        |        168 |          0 |         55 |        223 |
+| d:\project\travel\miniprogram\package.json                                  | JSON       |         19 |          0 |          1 |         20 |
+| d:\project\travel\miniprogram\pages\index\index.js                          | JavaScript |        101 |         34 |          9 |        144 |
+| d:\project\travel\miniprogram\pages\index\index.json                        | JSON       |          9 |          0 |          0 |          9 |
+| d:\project\travel\miniprogram\pages\index\index.wxml                        | wxml       |         28 |         11 |          2 |         41 |
+| d:\project\travel\miniprogram\pages\index\index.wxss                        | CSS        |         27 |          2 |          4 |         33 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.js            | JavaScript |         69 |         37 |         10 |        116 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.json          | JSON       |          3 |          0 |          0 |          3 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.skeleton.wxml | wxml       |         34 |         17 |          0 |         51 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.skeleton.wxss | CSS        |         54 |         10 |          1 |         65 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.wxml          | wxml       |         30 |          1 |          4 |         35 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\joinUser.wxss          | CSS        |          9 |          1 |          0 |         10 |
+| d:\project\travel\miniprogram\pages\showAct\joinUser\user.wxs               | wxs        |         21 |          0 |          3 |         24 |
+| d:\project\travel\miniprogram\pages\showAct\showAct.js                      | JavaScript |        279 |         26 |         14 |        319 |
+| d:\project\travel\miniprogram\pages\showAct\showAct.json                    | JSON       |         12 |          0 |          0 |         12 |
+| d:\project\travel\miniprogram\pages\showAct\showAct.skeleton.wxml           | wxml       |         16 |         17 |          2 |         35 |
+| d:\project\travel\miniprogram\pages\showAct\showAct.skeleton.wxss           | CSS        |         88 |         10 |          1 |         99 |
+| d:\project\travel\miniprogram\pages\showAct\showAct.wxml                    | wxml       |         74 |         21 |          2 |         97 |
+| d:\project\travel\miniprogram\pages\showAct\showAct.wxss                    | CSS        |         97 |         12 |          4 |        113 |
+| d:\project\travel\miniprogram\pages\startForm\editor\index.js               | JavaScript |        170 |         22 |          7 |        199 |
+| d:\project\travel\miniprogram\pages\startForm\editor\index.json             | JSON       |          6 |          0 |          0 |          6 |
+| d:\project\travel\miniprogram\pages\startForm\editor\index.wxml             | wxml       |         66 |          1 |          3 |         70 |
+| d:\project\travel\miniprogram\pages\startForm\editor\index.wxss             | CSS        |         78 |         17 |          7 |        102 |
+| d:\project\travel\miniprogram\pages\startForm\startForm.js                  | JavaScript |        279 |         71 |         13 |        363 |
+| d:\project\travel\miniprogram\pages\startForm\startForm.json                | JSON       |         14 |          0 |          0 |         14 |
+| d:\project\travel\miniprogram\pages\startForm\startForm.wxml                | wxml       |        162 |         11 |          5 |        178 |
+| d:\project\travel\miniprogram\pages\startForm\startForm.wxs                 | wxs        |         17 |          0 |          3 |         20 |
+| d:\project\travel\miniprogram\pages\startForm\startForm.wxss                | CSS        |         27 |          4 |          3 |         34 |
+| d:\project\travel\miniprogram\pages\start\start.js                          | JavaScript |         27 |         35 |         10 |         72 |
+| d:\project\travel\miniprogram\pages\start\start.json                        | JSON       |          4 |          0 |          1 |          5 |
+| d:\project\travel\miniprogram\pages\start\start.wxml                        | wxml       |          0 |          1 |          2 |          3 |
+| d:\project\travel\miniprogram\pages\start\start.wxss                        | CSS        |          0 |          1 |          0 |          1 |
+| d:\project\travel\miniprogram\pages\user\about\about.js                     | JavaScript |         20 |         28 |         18 |         66 |
+| d:\project\travel\miniprogram\pages\user\about\about.json                   | JSON       |          3 |          0 |          0 |          3 |
+| d:\project\travel\miniprogram\pages\user\about\about.wxml                   | wxml       |         16 |          0 |          3 |         19 |
+| d:\project\travel\miniprogram\pages\user\about\about.wxss                   | CSS        |          0 |          1 |          0 |          1 |
+| d:\project\travel\miniprogram\pages\user\record\record.js                   | JavaScript |         52 |         32 |         18 |        102 |
+| d:\project\travel\miniprogram\pages\user\record\record.json                 | JSON       |          5 |          0 |          0 |          5 |
+| d:\project\travel\miniprogram\pages\user\record\record.wxml                 | wxml       |         15 |          1 |          1 |         17 |
+| d:\project\travel\miniprogram\pages\user\record\record.wxss                 | CSS        |          4 |          2 |          1 |          7 |
+| d:\project\travel\miniprogram\pages\user\reward\reward.js                   | JavaScript |         20 |         28 |         18 |         66 |
+| d:\project\travel\miniprogram\pages\user\reward\reward.json                 | JSON       |          3 |          0 |          0 |          3 |
+| d:\project\travel\miniprogram\pages\user\reward\reward.wxml                 | wxml       |          3 |          1 |          1 |          5 |
+| d:\project\travel\miniprogram\pages\user\reward\reward.wxss                 | CSS        |          7 |          1 |          1 |          9 |
+| d:\project\travel\miniprogram\pages\user\user.js                            | JavaScript |         37 |        151 |         25 |        213 |
+| d:\project\travel\miniprogram\pages\user\user.json                          | JSON       |          8 |          0 |          0 |          8 |
+| d:\project\travel\miniprogram\pages\user\user.wxml                          | wxml       |         53 |          6 |          4 |         63 |
+| d:\project\travel\miniprogram\pages\user\user.wxs                           | wxs        |         21 |          0 |          3 |         24 |
+| d:\project\travel\miniprogram\pages\user\user.wxss                          | CSS        |         53 |         18 |          2 |         73 |
+| d:\project\travel\miniprogram\sitemap.json                                  | JSON       |          7 |          0 |          0 |          7 |
+| d:\project\travel\miniprogram\store\userinfo.js                             | JavaScript |         44 |         14 |          6 |         64 |
+| d:\project\travel\miniprogram\style\guide.wxss                              | CSS        |        124 |          0 |         21 |        145 |
+| d:\project\travel\miniprogram\utils\base64.js                               | JavaScript |        110 |          2 |         26 |        138 |
+| d:\project\travel\miniprogram\utils\getLogin.js                             | JavaScript |         34 |          9 |          2 |         45 |
+| d:\project\travel\miniprogram\utils\utils.js                                | JavaScript |         37 |          8 |          5 |         50 |
+| d:\project\travel\project.config.json                                       | JSON       |         99 |          0 |          0 |         99 |
+| d:\project\travel\project.private.config.json                               | JSON       |         60 |          0 |          0 |         60 |
+| Total                                                                       |            |     10,411 |        753 |        488 |     11,652 |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
